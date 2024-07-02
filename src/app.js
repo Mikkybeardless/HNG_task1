@@ -7,6 +7,8 @@ dotenv.config();
 
 const IpInfo_api_key = process.env.IpInfo_api_key;
 
+app.set("trust proxy", true);
+
 app.get("/", (req, res) => {
   res.json({ message: "Hello, welcome to the home route" });
 });
@@ -14,6 +16,8 @@ app.get("/", (req, res) => {
 app.get("/api/hello", async (req, res) => {
   const visitor_name = req.query.visitor_name;
   const ip = req.ip;
+
+  console.log("ip", ip);
 
   //get location
   const locationData = await axiosCall.getLocation(ip, IpInfo_api_key);

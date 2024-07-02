@@ -1,7 +1,7 @@
 import Cron from "croner";
 import axios from "axios";
 
-const url = "http://localhost:3000"; // replace with your server's URL
+const url = "https://hng-task1-dl2y.onrender.com/"; // replace with your server's URL
 
 const startKeepAliveJob = () => {
   const date = new Date();
