@@ -6,7 +6,7 @@ const url = "http://localhost:3000"; // replace with your server's URL
 const startKeepAliveJob = () => {
   const date = new Date();
   const time = date.toLocaleTimeString();
-  const job = Cron("*/2 * * * *", () => {
+  const job = Cron("*/5 * * * *", () => {
     // Runs every 2 minutes
     axios
       .get(url)

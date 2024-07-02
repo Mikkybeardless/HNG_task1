@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/hello", async (req, res) => {
-  const visitor_name = req.query.name;
+  const visitor_name = req.query.visitor_name;
   const ip = req.ip;
 
   //get location
