@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import * as axiosCall from "./services/service.getApi.js";
+import * as axiosCall from "../services/service.getApi.js";
 
 const app = express();
 dotenv.config();
