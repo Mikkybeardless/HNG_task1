@@ -1,11 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
-import * as axiosCall from "./services/service.getApi.js";
+import getIpDetails from "./services/service.getApi.js";
 
 const app = express();
 dotenv.config();
-
-const IpInfo_api_key = process.env.IpInfo_api_key;
+const api_key = process.env.api_key;
 
 app.set("trust proxy", true);
 
@@ -16,19 +15,17 @@ app.get("/", (req, res) => {
 app.get("/api/hello", async (req, res) => {
   const visitor_name = req.query.visitor_name;
   const ip = req.ip;
-
-  console.log("ip", ip);
-
-  //get location
-  const locationData = await axiosCall.getLocation(ip, IpInfo_api_key);
-  console.log("location", locationData);
-  const { city } = locationData;
-
+  console.log(ip);
   try {
+    const ipDetails = await getIpDetails(ip, api_key);
+
+    const city = ipDetails.location.name;
+    const temperature = ipDetails.current.temp_c;
+
     res.json({
       client_ip: ip,
       location: city,
-      greeting: `Hello, ${visitor_name} the temperature is 11 degrees celcius in ${city}!`,
+      greeting: `Hello, ${visitor_name} the temperature is ${temperature} degrees celcius in ${city}!`,
     });
   } catch (error) {
     console.log(error);

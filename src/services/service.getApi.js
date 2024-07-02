@@ -1,7 +1,9 @@
 import axios from "axios";
-// Function to get location data from IP address using IPinfo
-export const getLocation = async (ip, IpInfo_api_key) => {
-  const url = `https://ipinfo.io/${ip}?token=${IpInfo_api_key}`;
+
+const getIpDetails = async (ip, key) => {
+  const url = `http://api.weatherapi.com/v1/current.json?key=${key}&q=${ip}`;
   const response = await axios.get(url);
   return response.data;
 };
+
+export default getIpDetails;
