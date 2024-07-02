@@ -9,7 +9,12 @@ const api_key = process.env.api_key;
 app.set("trust proxy", true);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hello, welcome to the home route" });
+  res.json({
+    message: "Hello, welcome to the home route",
+    useful_links: {
+      Api: `https://hng-task1-dl2y.onrender.com/api/hello?visitor_name=your_name`,
+    },
+  });
 });
 
 app.get("/api/hello", async (req, res) => {
